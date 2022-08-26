@@ -1,4 +1,5 @@
 import { ThemeProvider } from 'styled-components'
+import { Hello } from './components/Hello'
 import { GlobalStyle } from './styles/global'
 import { defaultTheme } from './styles/themes/default'
 
@@ -6,7 +7,7 @@ function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <GlobalStyle />
-      <h1>Hello World</h1>
+      <Hello />
     </ThemeProvider>
   )
 }
