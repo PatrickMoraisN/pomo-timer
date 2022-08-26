@@ -19,7 +19,7 @@ export default {
     '<rootDir>/src/**/*.{ts,tsx}',
     '!<rootDir>/src/main/**/*',
     '!<rootDir>/src/**/index.ts',
-    '!<rootDir>/src/**/App.ts',
+    '!<rootDir>/src/**/App.{ts,tsx}',
     '!<rootDir>/src/styles/**/*.ts',
     '!**/*.d.ts',
     '!<rootDir>/src/**/main.tsx',
