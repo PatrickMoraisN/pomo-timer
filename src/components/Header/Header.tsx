@@ -1,20 +1,18 @@
 import React from 'react'
 import * as Styles from './Header.styles'
-import { ReactComponent as HistoryLogo } from '../../assets/icons/historyIcon.svg'
-import { ReactComponent as TimerLogo } from '../../assets/icons/timerIcon.svg'
-import { CalendarCheck } from 'phosphor-react'
+import { CalendarCheck, Scroll, Timer } from 'phosphor-react'
 import { NavLink } from 'react-router-dom'
 
 export function Header() {
   return (
     <Styles.HeaderContainer>
-      <CalendarCheck size={52} color="#ffd60a" />
+      <CalendarCheck data-testid="logo" size={52} color="#ffd60a" />
       <nav>
-        <NavLink to="/" title="Timer">
-          <TimerLogo />
+        <NavLink data-testid="timer-link" to="/" title="Timer">
+          <Timer size={24} />
         </NavLink>
-        <NavLink to="/history" title="History">
-          <HistoryLogo />
+        <NavLink data-testid="history-link" to="/history" title="History">
+          <Scroll size={24} />
         </NavLink>
       </nav>
     </Styles.HeaderContainer>
