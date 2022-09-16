@@ -1,9 +1,10 @@
-import { Play } from 'phosphor-react'
+import { HandPalm, Play } from 'phosphor-react'
 import * as S from './Home.styles'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { differenceInSeconds } from 'date-fns'
 
 const newCycleFormValidationSchema = zod.object({
   task: zod.string().min(1, 'Write a task!'),
@@ -16,6 +17,8 @@ interface Cycle {
   id: string
   task: string
   minutesAmount: number
+  startDate: Date
+  interruptedDate?: Date
 }
 
 export function Home() {
@@ -39,11 +42,25 @@ export function Home() {
       id: cycleId,
       task: data.task,
       minutesAmount: data.minutesAmount,
+      startDate: new Date(),
     }
 
     setCycles((prevCycles) => [...prevCycles, newCycle])
     setActiveCycleId(cycleId)
+    setAmountSecondsPassed(0)
     reset()
+  }
+
+  function handleInterruptCycle() {
+    setCycles(
+      cycles.map((cycle) => {
+        if (cycle.id === activeCycleId) {
+          return { ...cycle, interruptedDate: new Date() }
+        }
+        return cycle
+      }),
+    )
+    setActiveCycleId(null)
   }
 
   const activeCycle = cycles.find((cycle) => cycle.id === activeCycleId)
@@ -59,6 +76,28 @@ export function Home() {
   const task = watch('task')
   const isSubmitDisabled = !task
 
+  useEffect(() => {
+    let interval: number
+
+    if (activeCycle) {
+      interval = setInterval(() => {
+        setAmountSecondsPassed(
+          differenceInSeconds(new Date(), activeCycle.startDate),
+        )
+      }, 1000)
+    }
+
+    return () => {
+      clearInterval(interval)
+    }
+  }, [activeCycle])
+
+  useEffect(() => {
+    if (activeCycle) {
+      document.title = `${minutes}:${seconds}`
+    }
+  }, [minutes, seconds, activeCycle])
+
   return (
     <S.HomeContainer>
       <form onSubmit={handleSubmit(handleCreateNewCycle)}>
@@ -68,6 +107,7 @@ export function Home() {
             type="text"
             id="task"
             placeholder="name your project"
+            disabled={!!activeCycle}
             {...register('task')}
           />
 
@@ -93,10 +133,17 @@ export function Home() {
           <span>{seconds[1]}</span>
         </S.CountdownContainer>
 
-        <S.StartCountdownButton type="submit" disabled={isSubmitDisabled}>
-          <Play />
-          START
-        </S.StartCountdownButton>
+        {activeCycle ? (
+          <S.StopCountdownButton type="button" onClick={handleInterruptCycle}>
+            <HandPalm />
+            STOP
+          </S.StopCountdownButton>
+        ) : (
+          <S.StartCountdownButton type="submit" disabled={isSubmitDisabled}>
+            <Play />
+            START
+          </S.StartCountdownButton>
+        )}
       </form>
     </S.HomeContainer>
   )
