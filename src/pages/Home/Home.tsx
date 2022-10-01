@@ -28,12 +28,17 @@ export function Home() {
 
   const { register, handleSubmit, watch, _formState, reset } = newCycleForm
 
+  function handleCreateNewCycle(data: NewCycleFormData) {
+    createNewCycle(data)
+    reset()
+  }
+
   const task = watch('task')
   const isSubmitDisabled = !task
 
   return (
     <S.HomeContainer>
-      <form onSubmit={handleSubmit(createNewCycle)}>
+      <form onSubmit={handleSubmit(handleCreateNewCycle)}>
         <FormProvider {...newCycleForm}>
           <NewCycleForm />
         </FormProvider>
