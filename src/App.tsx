@@ -4,13 +4,16 @@ import { GlobalStyle } from './styles/global'
 import { defaultTheme } from './styles/themes/default'
 import { Router } from './routes'
 import { CyclesContextProvider } from './contexts/CyclesContext'
+import { CountdownContextProvider } from './contexts/CountdownContext'
 
 function App() {
   return (
     <BrowserRouter>
       <ThemeProvider theme={defaultTheme}>
         <CyclesContextProvider>
-          <Router />
+          <CountdownContextProvider>
+            <Router />
+          </CountdownContextProvider>
         </CyclesContextProvider>
         <GlobalStyle />
       </ThemeProvider>
