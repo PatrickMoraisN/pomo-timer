@@ -1,13 +1,16 @@
 import { differenceInSeconds, formatDistanceToNow } from 'date-fns'
-import { ptBR } from 'date-fns/locale'
-import React, { useContext, useEffect } from 'react'
+import { Trash } from 'phosphor-react'
+import { useContext, useEffect } from 'react'
 import { CountdownContext } from '../../contexts/CountdownContext'
 import { Cycle, CyclesContext } from '../../contexts/CyclesContext'
+import { Storage } from '../../enums/storage/CyclesState'
+import { deleteAllCyclesAction } from '../../reducers/Cycles/dispatch'
 import * as S from './History.styles'
 
 export function History() {
   const {
     cycles,
+    dispatch,
     activeCycle,
     activeCycleId,
     markCurrentCycleAsFinished,
@@ -25,6 +28,11 @@ export function History() {
     if (!cycle.interruptedDate && !cycle.finishedDate) {
       return <S.Status statusColor="yellow">In progress</S.Status>
     }
+  }
+
+  const handleClearHistory = () => {
+    localStorage.removeItem(Storage.CYCLES_STATE)
+    dispatch(deleteAllCyclesAction())
   }
 
   useEffect(() => {
@@ -61,7 +69,14 @@ export function History() {
 
   return (
     <S.HistoryContainer>
-      <h1>My History</h1>
+      <S.HistoryHeaderContainer>
+        <h1>My History</h1>
+        {!!cycles.length && (
+          <button onClick={handleClearHistory}>
+            <Trash /> Clear History
+          </button>
+        )}
+      </S.HistoryHeaderContainer>
 
       <S.HistoryList>
         <table>
@@ -80,7 +95,9 @@ export function History() {
                   <td>{cycle.task}</td>
                   <td>{cycle.minutesAmount} minutes</td>
                   <td>
-                    {formatDistanceToNow(cycle.startDate, { addSuffix: true })}
+                    {formatDistanceToNow(new Date(cycle.startDate), {
+                      addSuffix: true,
+                    })}
                   </td>
                   <td>{getCycleStatus(cycle)}</td>
                 </tr>

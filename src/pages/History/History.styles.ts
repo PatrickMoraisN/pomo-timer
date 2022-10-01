@@ -84,3 +84,26 @@ export const Status = styled.span<StatusProps>`
       props.theme[STATUS_COLORS[props.statusColor]]};
   }
 `
+
+export const HistoryHeaderContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    background-color: ${(props) => props.theme['red-500']};
+    color: ${(props) => props.theme.white};
+    transition: 0.3s;
+
+    &:hover {
+      filter: brightness(0.9);
+    }
+  }
+`
