@@ -14,3 +14,9 @@ export function markCurrentCycleAsFinishedAction() {
     type: ActionTypes.MARK_CURRENT_CYCLE_AS_FINISHED,
   }
 }
+
+export function deleteAllCyclesAction() {
+  return {
+    type: ActionTypes.DELETE_ALL_CYCLES,
+  }
+}
