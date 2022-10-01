@@ -1,4 +1,5 @@
-import { differenceInSeconds } from 'date-fns'
+import { differenceInSeconds, formatDistanceToNow } from 'date-fns'
+import { ptBR } from 'date-fns/locale'
 import React, { useContext, useEffect } from 'react'
 import { CountdownContext } from '../../contexts/CountdownContext'
 import { Cycle, CyclesContext } from '../../contexts/CyclesContext'
@@ -16,13 +17,13 @@ export function History() {
 
   const getCycleStatus = (cycle: Cycle) => {
     if (cycle.finishedDate) {
-      return <S.Status statusColor="green">Concluido</S.Status>
+      return <S.Status statusColor="green">Completed</S.Status>
     }
     if (cycle.interruptedDate) {
-      return <S.Status statusColor="red">Interrompido</S.Status>
+      return <S.Status statusColor="red">Interrupted</S.Status>
     }
     if (!cycle.interruptedDate && !cycle.finishedDate) {
-      return <S.Status statusColor="yellow">Em andamento</S.Status>
+      return <S.Status statusColor="yellow">In progress</S.Status>
     }
   }
 
@@ -66,9 +67,9 @@ export function History() {
         <table>
           <thead>
             <tr>
-              <th>Tarefa</th>
-              <th>Duração</th>
-              <th>Início</th>
+              <th>Task</th>
+              <th>Duration</th>
+              <th>Start</th>
               <th>Status</th>
             </tr>
           </thead>
@@ -77,15 +78,17 @@ export function History() {
               cycles.map((cycle) => (
                 <tr key={cycle.id}>
                   <td>{cycle.task}</td>
-                  <td>{cycle.minutesAmount} minutos</td>
-                  <td>{cycle.startDate.toISOString()}</td>
+                  <td>{cycle.minutesAmount} minutes</td>
+                  <td>
+                    {formatDistanceToNow(cycle.startDate, { addSuffix: true })}
+                  </td>
                   <td>{getCycleStatus(cycle)}</td>
                 </tr>
               ))}
             {!cycles.length && (
               <tr>
-                <td>Sem ciclos ainda :/</td>
                 <td></td>
+                <td>No cycles yet :/</td>
                 <td></td>
                 <td></td>
               </tr>
