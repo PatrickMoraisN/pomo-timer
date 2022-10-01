@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { useFormContext } from 'react-hook-form'
-import { CyclesContext } from '../../Home'
+import { CyclesContext } from '../../../../contexts/CyclesContext'
 import * as S from './NewCycleForm.styles'
 
 export function NewCycleForm() {
