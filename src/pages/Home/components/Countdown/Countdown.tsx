@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { useContext, useEffect } from 'react'
 import { differenceInSeconds } from 'date-fns'
 import * as S from './Countdown.styles'
@@ -15,7 +16,7 @@ export function Countdown() {
   const { totalSeconds, minutes, seconds } = useContext(CountdownContext)
 
   useEffect(() => {
-    let interval: number
+    let interval: number | Timer
 
     if (activeCycle) {
       interval = setInterval(() => {
@@ -41,7 +42,9 @@ export function Countdown() {
   useEffect(() => {
     if (activeCycle) {
       document.title = `${minutes}:${seconds}`
+      return
     }
+    document.title = 'PomoTimer'
   }, [minutes, seconds, activeCycle])
 
   return (
