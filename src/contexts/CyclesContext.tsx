@@ -40,8 +40,6 @@ export function CyclesContextProvider({
 
   const activeCycle = cycles.find((cycle) => cycle.id === activeCycleId)
 
-  console.log(activeCycleId)
-
   function markCurrentCycleAsFinished() {
     setCycles((prevCycles) =>
       prevCycles.map((cycle) => {
