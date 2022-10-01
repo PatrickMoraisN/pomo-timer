@@ -45,6 +45,13 @@ export function cyclesReducer(state: CyclesStateProps, action: any) {
       })
     }
 
+    case ActionTypes.DELETE_ALL_CYCLES: {
+      return produce(state, (draft) => {
+        draft.activeCycleId = null
+        draft.cycles = []
+      })
+    }
+
     default:
       return state
   }
