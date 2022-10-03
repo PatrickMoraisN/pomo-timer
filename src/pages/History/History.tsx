@@ -5,6 +5,8 @@ import { CountdownContext } from '../../contexts/CountdownContext'
 import { Cycle, CyclesContext } from '../../contexts/CyclesContext'
 import { Storage } from '../../enums/storage/CyclesState'
 import { deleteAllCyclesAction } from '../../reducers/Cycles/dispatch'
+import { TotalHours } from './components/TotalHours'
+
 import * as S from './History.styles'
 
 export function History() {
@@ -78,6 +80,8 @@ export function History() {
         )}
       </S.HistoryHeaderContainer>
 
+      {!!cycles.length && <TotalHours cycles={cycles} />}
+
       <S.HistoryList>
         <table>
           <thead>
@@ -90,18 +94,21 @@ export function History() {
           </thead>
           <tbody>
             {cycles &&
-              cycles.map((cycle) => (
-                <tr key={cycle.id}>
-                  <td>{cycle.task}</td>
-                  <td>{cycle.minutesAmount} minutes</td>
-                  <td>
-                    {formatDistanceToNow(new Date(cycle.startDate), {
-                      addSuffix: true,
-                    })}
-                  </td>
-                  <td>{getCycleStatus(cycle)}</td>
-                </tr>
-              ))}
+              cycles
+                .slice(0)
+                .reverse()
+                .map((cycle) => (
+                  <tr key={cycle.id}>
+                    <td>{cycle.task}</td>
+                    <td>{cycle.minutesAmount} minutes</td>
+                    <td>
+                      {formatDistanceToNow(new Date(cycle.startDate), {
+                        addSuffix: true,
+                      })}
+                    </td>
+                    <td>{getCycleStatus(cycle)}</td>
+                  </tr>
+                ))}
             {!cycles.length && (
               <tr>
                 <td></td>
