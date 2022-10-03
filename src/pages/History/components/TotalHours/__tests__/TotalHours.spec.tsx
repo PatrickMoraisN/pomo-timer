@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react'
-import * as Cycle from '../../../../../test/mocks/cycles.mock'
-import { TotalHours } from '../TotalHours'
+import * as Cycle from '@test/mocks/cycles.mock'
+import { TotalHours } from '@pages/History/components/TotalHours'
 
 const renderTotalHours = (cycles: any) => {
   const { container } = render(<TotalHours cycles={cycles} />)
