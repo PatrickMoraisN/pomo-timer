@@ -1,11 +1,11 @@
 import { differenceInSeconds, formatDistanceToNow } from 'date-fns'
 import { Trash } from 'phosphor-react'
 import { useContext, useEffect } from 'react'
-import { CountdownContext } from '../../contexts/CountdownContext'
-import { Cycle, CyclesContext } from '../../contexts/CyclesContext'
-import { Storage } from '../../enums/storage/CyclesState'
-import { deleteAllCyclesAction } from '../../reducers/Cycles/dispatch'
-import { TotalHours } from './components/TotalHours'
+import { CountdownContext } from '@context/CountdownContext'
+import { Cycle, CyclesContext } from '@context/CyclesContext'
+import { Storage } from '@enums/index'
+import { deleteAllCyclesAction } from '@reducers/index'
+import { TotalHours } from '@pages/History/components'
 
 import * as S from './History.styles'
 
