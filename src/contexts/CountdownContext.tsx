@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useContext } from 'react'
-import { CyclesContext } from './CyclesContext'
+import { CyclesContext } from '@context/index'
 
 interface CountdownContextProps {
   totalSeconds: number
