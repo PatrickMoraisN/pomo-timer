@@ -1,4 +1,4 @@
-import { Cycle } from '../../contexts/CyclesContext'
+import { Cycle } from '@context/CyclesContext'
 import { ActionTypes } from './actions'
 
 export function addNewCycleAction(newCycle: Cycle) {
