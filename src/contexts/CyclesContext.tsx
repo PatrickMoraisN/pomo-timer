@@ -7,13 +7,13 @@ import {
   useReducer,
   useState,
 } from 'react'
-import { Storage } from '../enums/storage/CyclesState'
+import { Storage } from '@enums/index'
 import {
+  cyclesReducer,
   addNewCycleAction,
   interruptCurrentCycleAction,
   markCurrentCycleAsFinishedAction,
-} from '../reducers/Cycles/dispatch'
-import { cyclesReducer } from '../reducers/Cycles/reducer'
+} from '@reducers/index'
 
 interface CreateCycleData {
   task: string
