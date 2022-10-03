@@ -1,5 +1,5 @@
 import { produce } from 'immer'
-import { Cycle } from '../../contexts/CyclesContext'
+import { Cycle } from '@context/CyclesContext'
 import { ActionTypes } from './actions'
 
 interface CyclesStateProps {
