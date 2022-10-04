@@ -22,6 +22,7 @@ export default {
     '!<rootDir>/src/**/App.{ts,tsx}',
     '!<rootDir>/src/styles/**/*.ts',
     '!**/*.d.ts',
+    '!**/*.styles.ts',
     '!<rootDir>/src/**/main.tsx',
   ],
 
@@ -91,7 +92,14 @@ export default {
   // ],
 
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
-  // moduleNameMapper: {},
+  moduleNameMapper: {
+    '^@pages/(.*)$': '<rootDir>/src/pages/$1',
+    '^@test/(.*)$': '<rootDir>/src/test/$1',
+    '^@components/(.*)$': '<rootDir>/src/components/$1',
+    '^@enums/(.*)$': '<rootDir>/src/enums/$1',
+    '^@context/(.*)$': '<rootDir>/src/contexts/$1',
+    '^@reducers/(.*)$': '<rootDir>/src/reducers/$1',
+  },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
   // modulePathIgnorePatterns: [],
