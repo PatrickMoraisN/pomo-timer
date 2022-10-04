@@ -14,7 +14,7 @@
 # :monocle_face: About
 Project developed to control the time you spend on tasks
 
-## [See it online!!](https://feedget-two-swart.vercel.app/)
+## [See it online!!](https://pomo-timer-beryl.vercel.app/)
 <br />
 
 ---
