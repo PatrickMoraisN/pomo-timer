@@ -26,7 +26,7 @@ export function Home() {
     },
   })
 
-  const { register, handleSubmit, watch, _formState, reset } = newCycleForm
+  const { handleSubmit, watch, reset } = newCycleForm
 
   function handleCreateNewCycle(data: NewCycleFormData) {
     createNewCycle(data)
