@@ -10,6 +10,7 @@ export function NewCycleForm() {
     <S.FormContainer>
       <label htmlFor="task">I will work in</label>
       <S.TaskInput
+        data-testid="task-input"
         type="text"
         id="task"
         placeholder="name your project"
@@ -19,6 +20,7 @@ export function NewCycleForm() {
 
       <label htmlFor="minutesAmount">for</label>
       <S.MinutesAmountInput
+        data-testid="minutes-input"
         type="number"
         id="minutesAmount"
         placeholder="00"
