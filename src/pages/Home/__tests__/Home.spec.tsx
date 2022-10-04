@@ -1,16 +1,13 @@
-import { CyclesContextProvider } from '@context/CyclesContext'
-import { CountdownContextProvider } from '@context/index'
+import { RenderWithContext } from '@test/utils/RenderWithContext'
 import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { Home } from '../Home'
 
 const renderHome = () =>
   render(
-    <CyclesContextProvider>
-      <CountdownContextProvider>
-        <Home />
-      </CountdownContextProvider>
-    </CyclesContextProvider>,
+    <RenderWithContext>
+      <Home />
+    </RenderWithContext>,
   )
 
 describe('Home', () => {
