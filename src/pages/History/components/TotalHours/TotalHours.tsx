@@ -6,6 +6,8 @@ interface TotalHoursProps {
   cycles: Cycle[]
 }
 
+const ONE_HOUR = 60
+
 export function TotalHours({ cycles }: TotalHoursProps) {
   const [totalTimeMsg, setTotalTimeMsg] = useState('')
 
@@ -26,20 +28,17 @@ export function TotalHours({ cycles }: TotalHoursProps) {
   const getTotalTimeFromCompletedCycles = () => {
     let totalTime: number = 0
     let message = ''
-    let allCycleAreFinished = true
     cycles.forEach((cycle) => {
       if (cycle.finishedDate && cycle.minutesAmount) {
         totalTime += cycle.minutesAmount
-        return
       }
-      allCycleAreFinished = false
     })
 
-    if (!allCycleAreFinished) return
-    if (totalTime >= 60) {
+    if (!totalTime) return
+    if (totalTime >= ONE_HOUR) {
       message = getHoursAndMinutes(totalTime)
     }
-    if (totalTime < 60) {
+    if (totalTime < ONE_HOUR) {
       message = getMinutes(totalTime)
     }
     setTotalTimeMsg(message)
