@@ -10,6 +10,10 @@ export const HistoryContainer = styled.main`
     font-size: 1.5rem;
     color: ${(props) => props.theme['gray-100']};
   }
+
+  @media screen and (max-width: 568px) {
+    padding: 1rem;
+  }
 `
 
 export const HistoryList = styled.div`
@@ -65,6 +69,21 @@ export const HistoryList = styled.div`
       }
     }
   }
+
+  ::-webkit-scrollbar {
+    height: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: ${(props) => props.theme['gray-300']};
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    margin-top: 25px;
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+  }
 `
 
 const STATUS_COLORS = {
@@ -111,6 +130,12 @@ export const HistoryHeaderContainer = styled.div`
 
     &:hover {
       filter: brightness(0.9);
+    }
+  }
+
+  @media screen and (max-width: 568px) {
+    button {
+      padding: 2px 4px;
     }
   }
 `
