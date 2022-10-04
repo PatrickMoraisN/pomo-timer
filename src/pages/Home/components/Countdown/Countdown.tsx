@@ -16,7 +16,7 @@ export function Countdown() {
   const { totalSeconds, minutes, seconds } = useContext(CountdownContext)
 
   useEffect(() => {
-    let interval: number | Timer
+    let interval: any
 
     if (activeCycle) {
       interval = setInterval(() => {

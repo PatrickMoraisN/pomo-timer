@@ -38,7 +38,7 @@ export function History() {
   }
 
   useEffect(() => {
-    let interval: number
+    let interval: any
 
     if (activeCycle) {
       interval = setInterval(() => {
