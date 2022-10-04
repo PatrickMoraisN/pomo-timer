@@ -13,6 +13,16 @@ export const CountdownContainer = styled.div`
     padding: 2rem 1rem;
     border-radius: 8px;
   }
+
+  @media screen and (max-width: 720px) {
+    font-size: 5rem;
+    line-height: 5rem;
+  }
+
+  @media screen and (max-width: 568px) {
+    font-size: 3rem;
+    line-height: 3rem;
+  }
 `
 
 export const Sperator = styled.div`
@@ -22,4 +32,8 @@ export const Sperator = styled.div`
   overflow: hidden;
   display: flex;
   justify-content: center;
+
+  @media screen and (max-width: 720px) {
+    width: 2rem;
+  }
 `
